@@ -8,6 +8,10 @@ namespace TypeLogger
 {
     public class TypeLogger
     {
+        public string FullName  { get; set; }
+        public string Name { get; set; }
+        public Type[] types { get; set; }
+        public Type BaseType { get; set; }
         public bool IsEnum { get; set; }
         public bool IsAbstract { get; set; }
         public bool IsInterface { get; set; }
@@ -16,7 +20,7 @@ namespace TypeLogger
         public bool IsClass { get; set; }
        
 
-        public void DisplayInfo<T>()
+        public StringBuilder DisplayInfo<T>()
         {
             var stringBuilder = new StringBuilder();
             Type type = typeof(T);
@@ -26,6 +30,10 @@ namespace TypeLogger
             this.IsPrimitive = type.IsPrimitive;
             this.IsValueType = type.IsValueType;
             this.IsClass = type.IsClass;
+            types = type.GetInterfaces();
+            this.FullName = type.FullName;
+            this.Name = type.Name;
+            this.BaseType = type.BaseType;
 
 
             stringBuilder.AppendLine($"FullName ={type.FullName},");
@@ -44,7 +52,7 @@ namespace TypeLogger
             stringBuilder.AppendLine($"Is Value Type? {type.IsValueType},");
             stringBuilder.AppendLine($"Is Class? {type.IsClass},");
 
-            Console.WriteLine(stringBuilder.ToString());
+            return stringBuilder;
             
             
 

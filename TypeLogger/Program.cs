@@ -1,8 +1,8 @@
 ﻿using TypeLogger;
 
-Console.WriteLine("Hello, World!");
+Console.WriteLine("Hello, World! :) ");
+var typeLogger = new TypeLogger.TypeLogger();
+Type type = typeof(Hoodie);
 
-var datetime = new DateTime();
 
-var a = new TypeLogger.TypeLogger();
-a.DisplayInfo<List<int>>();
+Console.WriteLine(typeLogger.DisplayInfo<Hoodie>());
