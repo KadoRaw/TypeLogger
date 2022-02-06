@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 
 namespace TypeLogger
 {
     public class TypeLogger
     {
-        public string FullName  { get; set; }
+        public string FullName { get; set; }
         public string Name { get; set; }
         public Type[] types { get; set; }
         public Type BaseType { get; set; }
@@ -18,7 +14,6 @@ namespace TypeLogger
         public bool IsPrimitive { get; set; }
         public bool IsValueType { get; set; }
         public bool IsClass { get; set; }
-       
 
         public StringBuilder DisplayInfo<T>()
         {
@@ -35,7 +30,6 @@ namespace TypeLogger
             this.Name = type.Name;
             this.BaseType = type.BaseType;
 
-
             stringBuilder.AppendLine($"FullName ={type.FullName},");
             stringBuilder.AppendLine($"Name ={type.Name},");
             stringBuilder.AppendLine($"BaseType ={type.BaseType},");
@@ -45,18 +39,14 @@ namespace TypeLogger
                 stringBuilder.Append($"{item.Name},");
             }
             stringBuilder.AppendLine($"{type.BaseType},");
-            stringBuilder.AppendLine($"Is Abstract? {type.IsAbstract},");
-            stringBuilder.AppendLine($"Is Enum? {type.IsEnum},");
-            stringBuilder.AppendLine($"Is Interface? {type.IsInterface},");
-            stringBuilder.AppendLine($"Is Primitive? {type.IsPrimitive},");
-            stringBuilder.AppendLine($"Is Value Type? {type.IsValueType},");
-            stringBuilder.AppendLine($"Is Class? {type.IsClass},");
+            if (IsAbstract) stringBuilder.AppendLine($" Abstract,");
+            if (IsEnum) stringBuilder.AppendLine($" Enum,");
+            if (IsInterface) stringBuilder.AppendLine($" Interface,");
+            if (IsPrimitive) stringBuilder.AppendLine($" Primitive,");
+            if (IsValueType) stringBuilder.AppendLine($" Value Type,");
+            if (IsClass) stringBuilder.AppendLine($"Class");
 
             return stringBuilder;
-            
-            
-
         }
-
     }
 }
